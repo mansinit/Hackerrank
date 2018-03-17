@@ -1,0 +1,70 @@
+/*
+Input Format
+
+The first line contains an integer q, the number of queries. 
+The next  lines will each contain a string s.
+
+Output Format
+
+A single line containing the number of minimum operations corresponding to each test case.
+
+*/
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int check_palindrome(string s)
+{
+    int flag=0;
+    for(int i=0,j=s.length()-1;i<s.length()/2+1;i++,j--)
+    {
+        if(s[i]==s[j])
+        {
+            
+            flag=1;
+        }
+        else
+        {
+            flag=0;
+            break;
+        }
+    }
+    
+    if(flag==1)
+        return 1;
+    else
+        return 0;
+return 0;
+}
+int theLoveLetterMystery(string s){
+    // Complete this function
+    int c=0;
+    if(check_palindrome(s))
+        return 0;
+    else
+    {
+        for(int i=0,j=s.length()-1;j>s.length()/2-1;i++,j--)
+        {
+            int x=int(s[i])-97;
+            int y=int(s[j])-97;
+            if(y-x>0)
+                c=c+(y-x);
+            else
+                c=c+(x-y);
+        }
+        return c;
+    }
+return 0;
+}
+
+int main() {
+    int q;
+    cin >> q;
+    for(int a0 = 0; a0 < q; a0++){
+        string s;
+        cin >> s;
+        int result = theLoveLetterMystery(s);
+        cout << result << endl;
+    }
+    return 0;
+}
