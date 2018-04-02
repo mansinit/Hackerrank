@@ -1,0 +1,68 @@
+/*
+Input Format
+
+The first line contains t, the number of testcases.
+
+Each of the next  sets of lines are described as follows: 
+- The first line contains n, the number of rows and columns in the grid. 
+- The next  lines contains a string of length n.
+
+Output Format
+
+For each test case, on a separate line print YES if it is possible to rearrange
+the grid alphabetically ascending in both its rows and columns, or NO otherwise.
+
+Approach:
+
+Sort each row and then compare the alphabets.
+*/
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+string gridChallenge(vector <string> grid) {
+    // Complete this function
+    int flag=0;
+    if(grid.size()==1)
+        return "YES";
+    for(int i=0;i<grid.size();i++)
+    {
+        sort(grid[i].begin(),grid[i].end()); 
+    }
+    for(int i=1;i<grid.size();i++)
+    {
+        for(int j=0;j<grid.size();j++)
+        {
+            if(int(grid[i-1][j])-97>int(grid[i][j])-97)
+            {
+                flag=0;
+                break;
+            }
+            else
+                flag=1;
+        }
+        if(flag==0)
+            break;
+    }
+    if(flag)
+        return "YES";
+    else
+        return "NO";
+}
+
+int main() {
+    int t;
+    cin >> t;
+    int n;
+    for(int i=0;i<t;i++)
+    {cin >> n;
+    vector<string> grid(n);
+    for(int grid_i = 0; grid_i < n; grid_i++){
+       cin >> grid[grid_i];
+    }
+    string result = gridChallenge(grid);
+    cout << result << endl;
+    }
+    return 0;
+}
