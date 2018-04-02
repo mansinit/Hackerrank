@@ -1,0 +1,58 @@
+/*
+Input Format
+
+The first line contains two integers, n and ,k followed by 
+a line containing n space separated integers indicating the products' prices.
+
+Output Format
+
+An integer that denotes maximum number of toys Mark can buy for his son.
+
+Sample Input
+
+7 50
+1 12 5 111 200 1000 10
+
+Sample Output
+
+4
+Explanation
+
+He can buy only 4 toys at most. These toys have the following prices: 1,12,5,10.
+
+Approach
+
+Sort the array and use sum variable to calculate until it reaches to the value less than k.
+
+*/
+#include <bits/stdc++.h>
+
+using namespace std;
+
+unsigned long long maximumToys(vector <int> prices, int k) {
+    // Complete this function
+    unsigned long long c=0;
+    unsigned long long sum=0;
+    sort(prices.begin(),prices.end());
+    for(int i=0;i<prices.size();i++)
+    {
+        sum+=prices[i];
+        c++;
+        if(sum>=k)
+            return c-1;
+    }
+    return 0;
+}
+
+int main() {
+    int n;
+    int k;
+    cin >> n >> k;
+    vector<int> prices(n);
+    for(int prices_i = 0; prices_i < n; prices_i++){
+       cin >> prices[prices_i];
+    }
+    unsigned long long result = maximumToys(prices, k);
+    cout << result << endl;
+    return 0;
+}
